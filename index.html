@@ -13,11 +13,11 @@
   :root {
     --ink: #f8f6f2;
     --paper: #262219;
-    --amber: #c8922a;
-    --amber-light: #f0d49a;
-    --amber-dim: #7a5618;
+    --emerald: #1b6b4f;
+    --emerald-light: #4fa878;
+    --emerald-dim: #0d3d2f;
     --muted: #5c5546;
-    --rule: rgba(200,146,42,0.25);
+    --rule: rgba(27,107,79,0.25);
     --font-display: 'Cormorant Garamond', Georgia, serif;
     --font-body: 'Syne', sans-serif;
     --font-mono: 'DM Mono', monospace;
@@ -62,7 +62,7 @@
   .nav-logo {
     font-family: var(--font-mono);
     font-size: 12px;
-    color: var(--amber);
+    color: var(--emerald);
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
@@ -83,7 +83,7 @@
     transition: opacity 0.2s, color 0.2s;
   }
 
-  .nav-links a:hover { opacity: 1; color: var(--amber); }
+  .nav-links a:hover { opacity: 1; color: var(--emerald); }
 
   /* ── HERO ── */
   #hero {
@@ -100,8 +100,8 @@
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(to right, rgba(200,146,42,0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(200,146,42,0.04) 1px, transparent 1px);
+      linear-gradient(to right, rgba(27,107,79,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(27,107,79,0.04) 1px, transparent 1px);
     background-size: 80px 80px;
     pointer-events: none;
   }
@@ -113,14 +113,14 @@
     width: 340px;
     height: 340px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(200,146,42,0.10) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(27,107,79,0.10) 0%, transparent 70%);
     pointer-events: none;
   }
 
   .hero-tag {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--amber);
+    color: var(--emerald);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     margin-bottom: 1.5rem;
@@ -141,10 +141,10 @@
 
   h1.hero-name em {
     font-style: italic;
-    color: var(--amber);
+    color: var(--emerald);
   }
 
-  .hero-desc {
+  .hero-desc { 
     max-width: 520px;
     color: rgba(38,34,25,0.7);
     font-size: 14px;
@@ -176,13 +176,13 @@
   }
 
   .btn-primary {
-    background: var(--amber);
-    border-color: var(--amber);
+    background: var(--emerald);
+    border-color: var(--emerald);
     color: var(--ink);
     font-weight: 600;
   }
 
-  .btn-primary:hover { background: var(--amber-light); border-color: var(--amber-light); }
+  .btn-primary:hover { background: var(--emerald-light); border-color: var(--emerald-light); }
 
   .btn-ghost {
     background: transparent;
@@ -190,7 +190,7 @@
     color: var(--paper);
   }
 
-  .btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+  .btn-ghost:hover { border-color: var(--emerald); color: var(--emerald); }
 
   /* ── SECTION BASE ── */
   section {
@@ -201,7 +201,7 @@
   .section-label {
     font-family: var(--font-mono);
     font-size: 10px;
-    color: var(--amber);
+    color: var(--emerald);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     margin-bottom: 0.8rem;
@@ -226,7 +226,7 @@
     margin-bottom: 3rem;
   }
 
-  h2.section-title em { font-style: italic; color: var(--amber); }
+  h2.section-title em { font-style: italic; color: var(--emerald); }
 
   /* ── ABOUT ── */
   #about { background: rgba(0,0,0,0.02); }
@@ -256,7 +256,7 @@
     font-family: var(--font-display);
     font-size: 2.6rem;
     font-weight: 300;
-    color: var(--amber);
+    color: var(--emerald);
     line-height: 1;
     margin-bottom: 0.3rem;
   }
@@ -304,19 +304,19 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
-    background: var(--amber);
+    background: var(--emerald);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s ease;
   }
 
-  .skill-card:hover { border-color: var(--amber); background: rgba(200,146,42,0.02); transform: translateY(-3px); }
+  .skill-card:hover { border-color: var(--emerald); background: rgba(27,107,79,0.02); transform: translateY(-3px); }
   .skill-card:hover::before { transform: scaleX(1); }
 
   .skill-cat {
     font-family: var(--font-mono);
     font-size: 10px;
-    color: var(--amber);
+    color: var(--emerald);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     margin-bottom: 0.8rem;
@@ -340,8 +340,8 @@
     font-family: var(--font-mono);
     font-size: 10px;
     padding: 0.2rem 0.6rem;
-    border: 1px solid rgba(200,146,42,0.3);
-    color: rgba(200,146,42,0.8);
+    border: 1px solid rgba(27,107,79,0.3);
+    color: rgba(27,107,79,0.8);
     letter-spacing: 0.05em;
   }
 
@@ -375,15 +375,15 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--amber);
+    background: var(--emerald);
     border: 2px solid var(--ink);
-    box-shadow: 0 0 0 1px var(--amber);
+    box-shadow: 0 0 0 1px var(--emerald);
   }
 
   .edu-period {
     font-family: var(--font-mono);
     font-size: 10px;
-    color: var(--amber);
+    color: var(--emerald);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
@@ -409,9 +409,9 @@
     font-family: var(--font-mono);
     font-size: 10px;
     padding: 0.25rem 0.7rem;
-    background: rgba(200,146,42,0.1);
-    border: 1px solid rgba(200,146,42,0.2);
-    color: var(--amber-light);
+    background: rgba(27,107,79,0.1);
+    border: 1px solid rgba(27,107,79,0.2);
+    color: var(--emerald-light);
     letter-spacing: 0.06em;
   }
 
@@ -432,13 +432,13 @@
     overflow: hidden;
   }
 
-  .project-card:hover { border-color: rgba(200,146,42,0.4); }
+  .project-card:hover { border-color: rgba(27,107,79,0.4); }
 
   .project-num {
     font-family: var(--font-display);
     font-size: 6rem;
     font-weight: 300;
-    color: rgba(200,146,42,0.06);
+    color: rgba(27,107,79,0.06);
     position: absolute;
     right: 1.5rem;
     top: -1rem;
@@ -453,7 +453,7 @@
     margin-bottom: 0.5rem;
   }
 
-  .project-org { font-size: 12px; color: var(--amber); margin-bottom: 1.2rem; font-family: var(--font-mono); letter-spacing: 0.06em; }
+  .project-org { font-size: 12px; color: var(--emerald); margin-bottom: 1.2rem; font-family: var(--font-mono); letter-spacing: 0.06em; }
 
   .project-desc {
     color: rgba(38,34,25,0.7);
@@ -476,7 +476,7 @@
     content: '→';
     position: absolute;
     left: 0;
-    color: var(--amber);
+    color: var(--emerald);
     font-size: 11px;
   }
 
@@ -499,7 +499,7 @@
   .pub-num {
     font-family: var(--font-display);
     font-size: 1.2rem;
-    color: var(--amber);
+    color: var(--emerald);
     font-weight: 300;
     padding-top: 0.1rem;
   }
@@ -519,7 +519,7 @@
     letter-spacing: 0.06em;
   }
 
-  .pub-journal { color: var(--amber); margin-right: 0.5rem; }
+  .pub-journal { color: var(--emerald); margin-right: 0.5rem; }
 
   /* ── CERTIFICATIONS ── */
   .cert-grid {
@@ -535,7 +535,7 @@
     transition: border-color 0.3s, transform 0.3s;
   }
 
-  .cert-card:hover { border-color: rgba(200,146,42,0.4); transform: translateY(-2px); }
+  .cert-card:hover { border-color: rgba(27,107,79,0.4); transform: translateY(-2px); }
 
   .cert-icon {
     font-size: 1.5rem;
@@ -569,14 +569,14 @@
     font-weight: 300;
     color: var(--paper);
     text-decoration: none;
-    border-bottom: 1px solid var(--amber);
+    border-bottom: 1px solid var(--emerald);
     padding-bottom: 0.2rem;
     transition: color 0.2s;
     display: inline-block;
     margin: 2rem 0;
   }
 
-  .contact-email:hover { color: var(--amber); }
+  .contact-email:hover { color: var(--emerald); }
 
   .contact-items {
     display: flex;
@@ -596,7 +596,7 @@
     gap: 0.5rem;
   }
 
-  .contact-item span { color: var(--amber); }
+  .contact-item span { color: var(--emerald); }
 
   /* ── FOOTER ── */
   footer {
@@ -636,10 +636,10 @@
   .gold-rule {
     width: 100%;
     height: 1px;
-    background: linear-gradient(to right, transparent, var(--amber), transparent);
+    background: linear-gradient(to right, transparent, var(--emerald), transparent);
     opacity: 0.3;
     margin: 0;
-  }
+  }}
 </style>
 </head>
 <body>
