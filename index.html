@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,638 +8,671 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Syne:wght@400;600;700&display=swap" rel="stylesheet" />
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --ink: #1f3a5f;
-    --paper: #262219;
-    --burgundy: #7c2d3f;
-    --burgundy-light: #a85c7f;
-    --burgundy-dim: #4d1a27;
-    --muted: #5c5546;
-    --rule: rgba(124,45,63,0.25);
-    --font-display: 'Cormorant Garamond', Georgia, serif;
-    --font-body: 'Syne', sans-serif;
-    --font-mono: 'DM Mono', monospace;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--ink);
-    color: var(--paper);
-    font-family: var(--font-body);
-    font-size: 15px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* ── NOISE TEXTURE ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 4vw;
-    background: rgba(249,247,243,0.95);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .nav-logo {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--burgundy);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--paper);
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    opacity: 0.6;
-    transition: opacity 0.2s, color 0.2s;
-  }
-
-  .nav-links a:hover { opacity: 1; color: var(--burgundy); }
-
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 0 4vw 6rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-grid-lines {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(to right, rgba(124,45,63,0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(124,45,63,0.04) 1px, transparent 1px);
-    background-size: 80px 80px;
-    pointer-events: none;
-  }
-
-  .hero-accent {
-    position: absolute;
-    top: 15%;
-    right: 6%;
-    width: 340px;
-    height: 340px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(124,45,63,0.10) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-tag {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--burgundy);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s ease forwards;
-  }
-
-  h1.hero-name {
-    font-family: var(--font-display);
-    font-size: clamp(3.5rem, 9vw, 8rem);
-    font-weight: 300;
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.35s ease forwards;
-  }
-
-  h1.hero-name em {
-    font-style: italic;
-    color: var(--burgundy);
-  }
-
-  .hero-desc { 
-    max-width: 520px;
-    color: rgba(38,34,25,0.7);
-    font-size: 14px;
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.5s ease forwards;
-  }}
-
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.65s ease forwards;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 0.7rem 1.8rem;
-    font-family: var(--font-body);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid;
-    transition: all 0.25s;
-    cursor: pointer;
-  }
-
-  .btn-primary {
-    background: var(--burgundy);
-    border-color: var(--burgundy);
-    color: var(--ink);
-    font-weight: 600;
-  }
-
-  .btn-primary:hover { background: var(--burgundy-light); border-color: var(--burgundy-light); }
-
-  .btn-ghost {
-    background: transparent;
-    border-color: rgba(26,22,18,0.3);
-    color: var(--paper);
-  }
-
-  .btn-ghost:hover { border-color: var(--burgundy); color: var(--burgundy); }
-
-  /* ── SECTION BASE ── */
-  section {
-    padding: 6rem 4vw;
-    position: relative;
-  }
-
-  .section-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--burgundy);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-  }
-
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--rule);
-    max-width: 80px;
-  }
-
-  h2.section-title {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 300;
-    line-height: 1.15;
-    margin-bottom: 3rem;
-  }
-
-  h2.section-title em { font-style: italic; color: var(--burgundy); }
-
-  /* ── ABOUT ── */
-  #about { background: rgba(0,0,0,0.02); }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .about-text p { color: rgba(38,34,25,0.75); margin-bottom: 1rem; line-height: 1.9; }
-
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .stat-item {
-    border-top: 1px solid var(--rule);
-    padding-top: 1rem;
-  }
-
-  .stat-num {
-    font-family: var(--font-display);
-    font-size: 2.6rem;
-    font-weight: 300;
-    color: var(--burgundy);
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-
-  .stat-label {
-    font-size: 11px;
-    color: rgba(38,34,25,0.55);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .info-list { list-style: none; }
-
-  .info-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 0.8rem 0;
-    border-bottom: 1px solid var(--rule);
-    font-size: 13px;
-  }
-
-  .info-list li:first-child { border-top: 1px solid var(--rule); }
-
-  .info-key { color: rgba(38,34,25,0.55); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; }
-  .info-val { color: var(--paper); text-align: right; }
-
-  /* ── SKILLS ── */
-  .skills-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .skill-card {
-    border: 1px solid var(--rule);
-    padding: 1.5rem;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-
-  .skill-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--burgundy);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-
-  .skill-card:hover { border-color: var(--burgundy); background: rgba(124,45,63,0.02); transform: translateY(-3px); }
-  .skill-card:hover::before { transform: scaleX(1); }
-
-  .skill-cat {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--burgundy);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-  }
-
-  .skill-card h3 {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    font-weight: 400;
-    margin-bottom: 0.8rem;
-  }
-
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.8rem;
-  }
-
-  .tag {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    padding: 0.2rem 0.6rem;
-    border: 1px solid rgba(124,45,63,0.3);
-    color: rgba(124,45,63,0.8);
-    letter-spacing: 0.05em;
-  }
-
-  /* ── EDUCATION ── */
-  #education { background: rgba(0,0,0,0.02); }
-
-  .edu-timeline { position: relative; padding-left: 2rem; }
-
-  .edu-timeline::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0.5rem; bottom: 0.5rem;
-    width: 1px;
-    background: var(--rule);
-  }
-
-  .edu-item {
-    position: relative;
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .edu-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-
-  .edu-item::before {
-    content: '';
-    position: absolute;
-    left: -2rem;
-    top: 0.5rem;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--burgundy);
-    border: 2px solid var(--ink);
-    box-shadow: 0 0 0 1px var(--burgundy);
-  }
-
-  .edu-period {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--burgundy);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  .edu-degree {
-    font-family: var(--font-display);
-    font-size: 1.6rem;
-    font-weight: 400;
-    margin-bottom: 0.3rem;
-  }
-
-  .edu-school { color: rgba(38,34,25,0.65); font-size: 13px; margin-bottom: 0.5rem; }
-
-  .edu-meta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-top: 0.8rem;
-  }
-
-  .edu-badge {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    padding: 0.25rem 0.7rem;
-    background: rgba(124,45,63,0.1);
-    border: 1px solid rgba(124,45,63,0.2);
-    color: var(--burgundy-light);
-    letter-spacing: 0.06em;
-  }
-
-  .edu-courses {
-    margin-top: 0.8rem;
-    font-size: 12px;
-    color: rgba(245,241,234,0.4);
-    line-height: 1.8;
-  }
-
-  /* ── PROJECTS ── */
-  .project-card {
-    border: 1px solid var(--rule);
-    padding: 2.5rem;
-    margin-bottom: 1.5rem;
-    transition: border-color 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .project-card:hover { border-color: rgba(124,45,63,0.4); }
-
-  .project-num {
-    font-family: var(--font-display);
-    font-size: 6rem;
-    font-weight: 300;
-    color: rgba(124,45,63,0.06);
-    position: absolute;
-    right: 1.5rem;
-    top: -1rem;
-    line-height: 1;
-    pointer-events: none;
-  }
-
-  .project-title {
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-  }
-
-  .project-org { font-size: 12px; color: var(--burgundy); margin-bottom: 1.2rem; font-family: var(--font-mono); letter-spacing: 0.06em; }
-
-  .project-desc {
-    color: rgba(38,34,25,0.7);
-    font-size: 13px;
-    line-height: 1.9;
-    margin-bottom: 1.2rem;
-  }
-
-  .project-points { list-style: none; }
-
-  .project-points li {
-    font-size: 13px;
-    color: rgba(38,34,25,0.7);
-    padding: 0.3rem 0;
-    padding-left: 1.2rem;
-    position: relative;
-  }
-
-  .project-points li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--burgundy);
-    font-size: 11px;
-  }
-
-  /* ── PUBLICATIONS ── */
-  #publications { background: rgba(0,0,0,0.02); }
-
-  .pub-list { list-style: none; counter-reset: pubs; }
-
-  .pub-item {
-    counter-increment: pubs;
-    display: grid;
-    grid-template-columns: 2.5rem 1fr;
-    gap: 1rem;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .pub-item:first-child { border-top: 1px solid var(--rule); }
-
-  .pub-num {
-    font-family: var(--font-display);
-    font-size: 1.2rem;
-    color: var(--burgundy);
-    font-weight: 300;
-    padding-top: 0.1rem;
-  }
-
-  .pub-title {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 400;
-    line-height: 1.4;
-    margin-bottom: 0.4rem;
-  }
-
-  .pub-meta {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: rgba(38,34,25,0.55);
-    letter-spacing: 0.06em;
-  }
-
-  .pub-journal { color: var(--burgundy); margin-right: 0.5rem; }
-
-  /* ── CERTIFICATIONS ── */
-  .cert-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1rem;
-  }
-
-  .cert-card {
-    padding: 1.5rem;
-    border: 1px solid var(--rule);
-    position: relative;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-
-  .cert-card:hover { border-color: rgba(124,45,63,0.4); transform: translateY(-2px); }
-
-  .cert-icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .cert-name {
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-    line-height: 1.4;
-  }
-
-  .cert-issuer {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: rgba(38,34,25,0.55);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  /* ── CONTACT ── */
-  #contact {
-    text-align: center;
-    padding: 7rem 4vw;
-  }
-
-  .contact-email {
-    font-family: var(--font-display);
-    font-size: clamp(1.5rem, 4vw, 3rem);
-    font-weight: 300;
-    color: var(--paper);
-    text-decoration: none;
-    border-bottom: 1px solid var(--burgundy);
-    padding-bottom: 0.2rem;
-    transition: color 0.2s;
-    display: inline-block;
-    margin: 2rem 0;
-  }
-
-  .contact-email:hover { color: var(--burgundy); }
-
-  .contact-items {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-
-  .contact-item {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: rgba(38,34,25,0.55);
-    letter-spacing: 0.08em;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .contact-item span { color: var(--burgundy); }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 2rem 4vw;
-    border-top: 1px solid var(--rule);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: rgba(38,34,25,0.35);
-    letter-spacing: 0.08em;
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .stats-row { grid-template-columns: repeat(3, 1fr); }
-    .nav-links { display: none; }
-  }
-
-  /* ── DIVIDER ── */
-  .gold-rule {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--burgundy), transparent);
-    opacity: 0.3;
-    margin: 0;
-  }}}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #ffffff;
+  --bg-alt:    #f7f8fa;
+  --ink:       #0f172a;
+  --muted:     #64748b;
+  --accent:    #1d4ed8;
+  --accent-lt: #dbeafe;
+  --accent-dk: #1e3a8a;
+  --rule:      #e2e8f0;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Syne', sans-serif;
+  --font-mono:    'DM Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 4vw;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 4vw 6rem;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.hero-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--rule) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--rule) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.hero-accent {
+  position: absolute;
+  top: 12%;
+  right: 5%;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(29,78,216,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s ease forwards;
+}
+
+h1.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.35s ease forwards;
+}
+
+h1.hero-name em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-desc {
+  max-width: 520px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.85;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.5s ease forwards;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.65s ease forwards;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.8rem;
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid;
+  transition: all 0.22s;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-primary:hover { background: var(--accent-dk); border-color: var(--accent-dk); }
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--rule);
+  color: var(--ink);
+}
+
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── SECTION BASE ── */
+section {
+  padding: 6rem 4vw;
+  position: relative;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+  max-width: 80px;
+}
+
+h2.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 3rem;
+}
+
+h2.section-title em { font-style: italic; color: var(--accent); }
+
+/* ── DIVIDER ── */
+.rule {
+  width: 100%;
+  height: 1px;
+  background: var(--rule);
+  margin: 0;
+}
+
+/* ── ABOUT ── */
+#about { background: var(--bg-alt); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-text p { color: var(--muted); margin-bottom: 1rem; line-height: 1.9; font-size: 14px; }
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.stat-item { border-top: 2px solid var(--accent); padding-top: 1rem; }
+
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 300;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.info-list { list-style: none; }
+
+.info-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 13px;
+}
+
+.info-list li:first-child { border-top: 1px solid var(--rule); }
+
+.info-key {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.info-val { color: var(--ink); text-align: right; font-size: 13px; }
+
+/* ── SKILLS ── */
+#skills { background: var(--bg); }
+
+.skills-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-card {
+  border: 1px solid var(--rule);
+  padding: 1.6rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  background: var(--bg);
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+.skill-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(29,78,216,0.08);
+  transform: translateY(-3px);
+}
+
+.skill-card:hover::before { transform: scaleX(1); }
+
+.skill-cat {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.skill-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.8rem;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  background: var(--bg-alt);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.skill-card:hover .tag {
+  border-color: var(--accent-lt);
+  color: var(--accent-dk);
+  background: var(--accent-lt);
+}
+
+/* ── EDUCATION ── */
+#education { background: var(--bg-alt); }
+
+.edu-timeline { position: relative; padding-left: 2rem; }
+
+.edu-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.5rem; bottom: 0.5rem;
+  width: 1px;
+  background: var(--rule);
+}
+
+.edu-item {
+  position: relative;
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.edu-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+.edu-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 0.55rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg-alt);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.edu-period {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.edu-degree {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+
+.edu-school { color: var(--muted); font-size: 13px; margin-bottom: 0.5rem; }
+
+.edu-meta {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.8rem;
+}
+
+.edu-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 0.25rem 0.7rem;
+  background: var(--accent-lt);
+  border: 1px solid rgba(29,78,216,0.2);
+  color: var(--accent-dk);
+  letter-spacing: 0.05em;
+}
+
+.edu-courses {
+  margin-top: 0.7rem;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* ── PROJECTS ── */
+#projects { background: var(--bg); }
+
+.project-card {
+  border: 1px solid var(--rule);
+  padding: 2.5rem;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 24px rgba(29,78,216,0.07);
+}
+
+.project-num {
+  font-family: var(--font-display);
+  font-size: 6rem;
+  font-weight: 300;
+  color: rgba(29,78,216,0.05);
+  position: absolute;
+  right: 1.5rem;
+  top: -1rem;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.project-org {
+  font-size: 11px;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.project-points { list-style: none; }
+
+.project-points li {
+  font-size: 13px;
+  color: var(--muted);
+  padding: 0.35rem 0;
+  padding-left: 1.2rem;
+  position: relative;
+  line-height: 1.7;
+}
+
+.project-points li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 11px;
+}
+
+/* ── PUBLICATIONS ── */
+#publications { background: var(--bg-alt); }
+
+.pub-list { list-style: none; }
+
+.pub-item {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.pub-item:first-child { border-top: 1px solid var(--rule); }
+
+.pub-num {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--accent);
+  font-weight: 300;
+  padding-top: 0.1rem;
+}
+
+.pub-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.pub-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.pub-journal { color: var(--accent); margin-right: 0.4rem; }
+
+/* ── CERTIFICATIONS ── */
+#certifications { background: var(--bg); }
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.cert-card {
+  padding: 1.5rem;
+  border: 1px solid var(--rule);
+  background: var(--bg);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.cert-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px rgba(29,78,216,0.07);
+  transform: translateY(-2px);
+}
+
+.cert-icon {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-bottom: 0.8rem;
+}
+
+.cert-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+  line-height: 1.4;
+}
+
+.cert-issuer {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── CONTACT ── */
+#contact {
+  text-align: center;
+  padding: 7rem 4vw;
+  background: var(--bg-alt);
+}
+
+.contact-email {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4vw, 2.8rem);
+  font-weight: 300;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.2rem;
+  transition: color 0.2s;
+  display: inline-block;
+  margin: 2rem 0;
+}
+
+.contact-email:hover { color: var(--accent); }
+
+.contact-items {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.contact-item {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.07em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-item span { color: var(--accent); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 1.8rem 4vw;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  background: var(--bg);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .stats-row { grid-template-columns: repeat(3, 1fr); }
+  .nav-links { display: none; }
+}
 </style>
 </head>
 <body>
@@ -666,7 +699,7 @@
   <p class="hero-desc">
     MSc candidate in Mathematics for Data &amp; Resource Sciences at TU Bergakademie Freiberg, Germany.
     Specializing in probabilistic modeling, machine learning pipelines and high-performance computing
-    — with six peer-reviewed publications in theoretical physics.
+    with six peer-reviewed publications in theoretical physics.
   </p>
   <div class="hero-cta">
     <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -674,7 +707,7 @@
   </div>
 </section>
 
-<div class="gold-rule"></div>
+<div class="rule"></div>
 
 <!-- ABOUT -->
 <section id="about">
@@ -719,7 +752,7 @@
   </div>
 </section>
 
-<div class="gold-rule"></div>
+<div class="rule"></div>
 
 <!-- SKILLS -->
 <section id="skills">
@@ -773,7 +806,7 @@
   </div>
 </section>
 
-<div class="gold-rule"></div>
+<div class="rule"></div>
 
 <!-- EDUCATION -->
 <section id="education">
@@ -796,7 +829,7 @@
       <div class="edu-period">Feb 2021 — Jan 2023</div>
       <div class="edu-degree">Master of Science in Mathematics</div>
       <div class="edu-school">COMSATS University Islamabad, Lahore Campus, Pakistan</div>
-      <div class="edu-courses">Thesis: Some Thermal Properties of Self-Gravitating Objects — numerical simulations & stability analysis</div>
+      <div class="edu-courses">Thesis: Some Thermal Properties of Self-Gravitating Objects — numerical simulations &amp; stability analysis</div>
       <div class="edu-meta">
         <span class="edu-badge">CGPA 3.54 / 4.0</span>
         <span class="edu-badge">Pakistan</span>
@@ -816,13 +849,14 @@
   </div>
 </section>
 
-<div class="gold-rule"></div>
+<div class="rule"></div>
 
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-label">04 / Projects</div>
   <h2 class="section-title">Featured <em>Work</em></h2>
   <div class="reveal">
+
     <div class="project-card">
       <div class="project-num">01</div>
       <div class="project-title">Tinto Hyperspectral Point Cloud Segmentation</div>
@@ -850,7 +884,7 @@
         <li>Implemented a class-conditioned Generative Adversarial Network (cGAN) for controlled image generation on the CIFAR-10 dataset</li>
         <li>Designed and trained generator and discriminator architectures with class embedding projections using PyTorch on GPU (CUDA)</li>
         <li>Developed configurable training pipeline via YAML config files with extensive hyperparameter tuning (learning rates, weight decay, label smoothing, data augmentation)</li>
-        <li>Built comprehensive evaluation framework generating sample grids, latent space interpolations, confusion matrices and quantitative metrics (D(G(z)) scores, pixel statistics)</li>
+        <li>Built comprehensive evaluation framework generating sample grids, latent space interpolations, confusion matrices and quantitative metrics</li>
       </ul>
       <div class="skill-tags" style="margin-top:1.2rem">
         <span class="tag">Python</span>
@@ -860,10 +894,11 @@
         <span class="tag">GPU Computing</span>
       </div>
     </div>
+
   </div>
 </section>
 
-<div class="gold-rule"></div>
+<div class="rule"></div>
 
 <!-- PUBLICATIONS -->
 <section id="publications">
@@ -875,9 +910,7 @@
       <div class="pub-num">06</div>
       <div>
         <div class="pub-title">Thermodynamics of f(T, T̄) gravity corrected black holes</div>
-        <div class="pub-meta">
-          <span class="pub-journal">Physics of the Dark Universe</span> 48 (2025) · Ahissou et al. (incl. H. Raza)
-        </div>
+        <div class="pub-meta"><span class="pub-journal">Physics of the Dark Universe</span> 48 (2025) · Ahissou et al. (incl. H. Raza)</div>
       </div>
     </li>
 
@@ -885,9 +918,7 @@
       <div class="pub-num">05</div>
       <div>
         <div class="pub-title">Non-extensive entropic corrected thermal stability of black holes</div>
-        <div class="pub-meta">
-          <span class="pub-journal">Nuclear Physics B</span> 1018 (2025) · Mushtaq, H. Raza et al.
-        </div>
+        <div class="pub-meta"><span class="pub-journal">Nuclear Physics B</span> 1018 (2025) · Mushtaq, H. Raza et al.</div>
       </div>
     </li>
 
@@ -895,9 +926,7 @@
       <div class="pub-num">04</div>
       <div>
         <div class="pub-title">Probing thermodynamics of Einstein-Maxwell scalar black hole</div>
-        <div class="pub-meta">
-          <span class="pub-journal">Physics of the Dark Universe</span> 48 (2025) · Rani, H. Raza et al.
-        </div>
+        <div class="pub-meta"><span class="pub-journal">Physics of the Dark Universe</span> 48 (2025) · Rani, H. Raza et al.</div>
       </div>
     </li>
 
@@ -905,9 +934,7 @@
       <div class="pub-num">03</div>
       <div>
         <div class="pub-title">Versatile Thermodynamics Study of F(R) Gravity</div>
-        <div class="pub-meta">
-          <span class="pub-journal">Communications in Theoretical Physics</span> 78.3 (2025) · Shahid, H. Raza et al.
-        </div>
+        <div class="pub-meta"><span class="pub-journal">Communications in Theoretical Physics</span> 78.3 (2025) · Shahid, H. Raza et al.</div>
       </div>
     </li>
 
@@ -915,9 +942,7 @@
       <div class="pub-num">02</div>
       <div>
         <div class="pub-title">Thermodynamic properties of Bardeen black hole</div>
-        <div class="pub-meta">
-          <span class="pub-journal">European Physical Journal C</span> 84.9 (2024) · H. Raza et al.
-        </div>
+        <div class="pub-meta"><span class="pub-journal">European Physical Journal C</span> 84.9 (2024) · H. Raza et al.</div>
       </div>
     </li>
 
@@ -925,16 +950,14 @@
       <div class="pub-num">01</div>
       <div>
         <div class="pub-title">Physical viability of exponential entropy on charged AdS black hole</div>
-        <div class="pub-meta">
-          <span class="pub-journal">European Physical Journal C</span> 83.9 (2023) · H. Raza et al.
-        </div>
+        <div class="pub-meta"><span class="pub-journal">European Physical Journal C</span> 83.9 (2023) · H. Raza et al.</div>
       </div>
     </li>
 
   </ul>
 </section>
 
-<div class="gold-rule"></div>
+<div class="rule"></div>
 
 <!-- CERTIFICATIONS -->
 <section id="certifications">
@@ -969,13 +992,13 @@
   </div>
 </section>
 
-<div class="gold-rule"></div>
+<div class="rule"></div>
 
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-label" style="justify-content:center">07 / Contact</div>
   <h2 class="section-title" style="text-align:center">Let's <em>Connect</em></h2>
-  <p style="color:rgba(245,241,234,0.4); max-width:400px; margin:0 auto; text-align:center; font-size:13px;">
+  <p style="color:var(--muted); max-width:400px; margin:0 auto; text-align:center; font-size:13px;">
     Open to research collaborations, internship opportunities and interesting data science challenges.
   </p>
   <div style="text-align:center">
