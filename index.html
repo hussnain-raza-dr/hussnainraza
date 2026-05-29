@@ -35,7 +35,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ── NAV ── */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -75,7 +74,6 @@ nav {
 
 .nav-links a:hover { color: var(--accent); }
 
-/* ── HERO ── */
 #hero {
   min-height: 100vh;
   display: flex;
@@ -132,10 +130,7 @@ h1.hero-name {
   animation: fadeUp 0.9s 0.35s ease forwards;
 }
 
-h1.hero-name em {
-  font-style: italic;
-  color: var(--accent);
-}
+h1.hero-name em { font-style: italic; color: var(--accent); }
 
 .hero-desc {
   max-width: 520px;
@@ -168,28 +163,12 @@ h1.hero-name em {
   cursor: pointer;
 }
 
-.btn-primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-  font-weight: 600;
-}
-
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
 .btn-primary:hover { background: var(--accent-dk); border-color: var(--accent-dk); }
-
-.btn-ghost {
-  background: transparent;
-  border-color: var(--rule);
-  color: var(--ink);
-}
-
+.btn-ghost { background: transparent; border-color: var(--rule); color: var(--ink); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-/* ── SECTION BASE ── */
-section {
-  padding: 6rem 4vw;
-  position: relative;
-}
+section { padding: 6rem 4vw; position: relative; }
 
 .section-label {
   font-family: var(--font-mono);
@@ -203,13 +182,7 @@ section {
   gap: 0.8rem;
 }
 
-.section-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--rule);
-  max-width: 80px;
-}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); max-width: 80px; }
 
 h2.section-title {
   font-family: var(--font-display);
@@ -222,81 +195,26 @@ h2.section-title {
 
 h2.section-title em { font-style: italic; color: var(--accent); }
 
-/* ── DIVIDER ── */
-.rule {
-  width: 100%;
-  height: 1px;
-  background: var(--rule);
-  margin: 0;
-}
+.rule { width: 100%; height: 1px; background: var(--rule); margin: 0; }
 
-/* ── ABOUT ── */
 #about { background: var(--bg-alt); }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: start;
-}
-
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
 .about-text p { color: var(--muted); margin-bottom: 1rem; line-height: 1.9; font-size: 14px; }
 
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
 .stat-item { border-top: 2px solid var(--accent); padding-top: 1rem; }
-
-.stat-num {
-  font-family: var(--font-display);
-  font-size: 2.6rem;
-  font-weight: 300;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 0.3rem;
-}
-
-.stat-label {
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
+.stat-num { font-family: var(--font-display); font-size: 2.6rem; font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: 0.3rem; }
+.stat-label { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
 
 .info-list { list-style: none; }
-
-.info-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 0.8rem 0;
-  border-bottom: 1px solid var(--rule);
-  font-size: 13px;
-}
-
+.info-list li { display: flex; justify-content: space-between; align-items: baseline; padding: 0.8rem 0; border-bottom: 1px solid var(--rule); font-size: 13px; }
 .info-list li:first-child { border-top: 1px solid var(--rule); }
-
-.info-key {
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.05em;
-}
-
+.info-key { color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; }
 .info-val { color: var(--ink); text-align: right; font-size: 13px; }
 
-/* ── SKILLS ── */
 #skills { background: var(--bg); }
-
-.skills-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
+.skills-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
 
 .skill-card {
   border: 1px solid var(--rule);
@@ -318,356 +236,94 @@ h2.section-title em { font-style: italic; color: var(--accent); }
   transition: transform 0.35s ease;
 }
 
-.skill-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 4px 20px rgba(29,78,216,0.08);
-  transform: translateY(-3px);
-}
-
+.skill-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(29,78,216,0.08); transform: translateY(-3px); }
 .skill-card:hover::before { transform: scaleX(1); }
 
-.skill-cat {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--accent);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: 0.6rem;
-}
+.skill-cat { font-family: var(--font-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.6rem; }
+.skill-card h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 0.8rem; }
 
-.skill-card h3 {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 400;
-  color: var(--ink);
-  margin-bottom: 0.8rem;
-}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
+.tag { font-family: var(--font-mono); font-size: 10px; padding: 0.25rem 0.65rem; border: 1px solid var(--rule); color: var(--muted); letter-spacing: 0.04em; background: var(--bg-alt); transition: border-color 0.2s, color 0.2s, background 0.2s; }
+.skill-card:hover .tag { border-color: var(--accent-lt); color: var(--accent-dk); background: var(--accent-lt); }
 
-.skill-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.8rem;
-}
-
-.tag {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  padding: 0.25rem 0.65rem;
-  border: 1px solid var(--rule);
-  color: var(--muted);
-  letter-spacing: 0.04em;
-  background: var(--bg-alt);
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.skill-card:hover .tag {
-  border-color: var(--accent-lt);
-  color: var(--accent-dk);
-  background: var(--accent-lt);
-}
-
-/* ── EDUCATION ── */
 #education { background: var(--bg-alt); }
-
 .edu-timeline { position: relative; padding-left: 2rem; }
+.edu-timeline::before { content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0.5rem; width: 1px; background: var(--rule); }
 
-.edu-timeline::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0.5rem; bottom: 0.5rem;
-  width: 1px;
-  background: var(--rule);
-}
-
-.edu-item {
-  position: relative;
-  margin-bottom: 3rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid var(--rule);
-}
-
+.edu-item { position: relative; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--rule); }
 .edu-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.edu-item::before { content: ''; position: absolute; left: -2rem; top: 0.55rem; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg-alt); box-shadow: 0 0 0 1px var(--accent); }
 
-.edu-item::before {
-  content: '';
-  position: absolute;
-  left: -2rem;
-  top: 0.55rem;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  border: 2px solid var(--bg-alt);
-  box-shadow: 0 0 0 1px var(--accent);
-}
-
-.edu-period {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--accent);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 0.4rem;
-}
-
-.edu-degree {
-  font-family: var(--font-display);
-  font-size: 1.55rem;
-  font-weight: 400;
-  color: var(--ink);
-  margin-bottom: 0.25rem;
-}
-
+.edu-period { font-family: var(--font-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem; }
+.edu-degree { font-family: var(--font-display); font-size: 1.55rem; font-weight: 400; color: var(--ink); margin-bottom: 0.25rem; }
 .edu-school { color: var(--muted); font-size: 13px; margin-bottom: 0.5rem; }
+.edu-meta { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.8rem; }
+.edu-badge { font-family: var(--font-mono); font-size: 10px; padding: 0.25rem 0.7rem; background: var(--accent-lt); border: 1px solid rgba(29,78,216,0.2); color: var(--accent-dk); letter-spacing: 0.05em; }
+.edu-courses { margin-top: 0.7rem; font-size: 12px; color: var(--muted); line-height: 1.8; }
 
-.edu-meta {
-  display: flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  margin-top: 0.8rem;
-}
-
-.edu-badge {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  padding: 0.25rem 0.7rem;
-  background: var(--accent-lt);
-  border: 1px solid rgba(29,78,216,0.2);
-  color: var(--accent-dk);
-  letter-spacing: 0.05em;
-}
-
-.edu-courses {
-  margin-top: 0.7rem;
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.8;
-}
-
-/* ── PROJECTS ── */
 #projects { background: var(--bg); }
+.project-card { border: 1px solid var(--rule); padding: 2.5rem; margin-bottom: 1.5rem; transition: border-color 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; background: var(--bg); }
+.project-card:hover { border-color: var(--accent); box-shadow: 0 4px 24px rgba(29,78,216,0.07); }
 
-.project-card {
-  border: 1px solid var(--rule);
-  padding: 2.5rem;
-  margin-bottom: 1.5rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  position: relative;
-  overflow: hidden;
-  background: var(--bg);
-}
-
-.project-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 4px 24px rgba(29,78,216,0.07);
-}
-
-.project-num {
-  font-family: var(--font-display);
-  font-size: 6rem;
-  font-weight: 300;
-  color: rgba(29,78,216,0.05);
-  position: absolute;
-  right: 1.5rem;
-  top: -1rem;
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-}
-
-.project-title {
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-  font-weight: 400;
-  color: var(--ink);
-  margin-bottom: 0.4rem;
-}
-
-.project-org {
-  font-size: 11px;
-  color: var(--accent);
-  margin-bottom: 1.2rem;
-  font-family: var(--font-mono);
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-}
+.project-num { font-family: var(--font-display); font-size: 6rem; font-weight: 300; color: rgba(29,78,216,0.05); position: absolute; right: 1.5rem; top: -1rem; line-height: 1; pointer-events: none; user-select: none; }
+.project-title { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; color: var(--ink); margin-bottom: 0.4rem; }
+.project-org { font-size: 11px; color: var(--accent); margin-bottom: 1.2rem; font-family: var(--font-mono); letter-spacing: 0.07em; text-transform: uppercase; }
 
 .project-points { list-style: none; }
+.project-points li { font-size: 13px; color: var(--muted); padding: 0.35rem 0; padding-left: 1.2rem; position: relative; line-height: 1.7; }
+.project-points li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 11px; }
 
-.project-points li {
-  font-size: 13px;
-  color: var(--muted);
-  padding: 0.35rem 0;
-  padding-left: 1.2rem;
-  position: relative;
-  line-height: 1.7;
-}
-
-.project-points li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-size: 11px;
-}
-
-/* ── PUBLICATIONS ── */
-#publications { background: var(--bg-alt); }
-
-.pub-list { list-style: none; }
-
-.pub-item {
-  display: grid;
-  grid-template-columns: 2.5rem 1fr;
-  gap: 1rem;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--rule);
-}
-
-.pub-item:first-child { border-top: 1px solid var(--rule); }
-
-.pub-num {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  color: var(--accent);
-  font-weight: 300;
-  padding-top: 0.1rem;
-}
-
-.pub-title {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 400;
-  line-height: 1.4;
-  color: var(--ink);
-  margin-bottom: 0.4rem;
-}
-
-.pub-meta {
+/* GitHub link badge */
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.2rem;
   font-family: var(--font-mono);
   font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.05em;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  border: 1px solid rgba(29,78,216,0.25);
+  padding: 0.3rem 0.75rem;
+  transition: background 0.2s, color 0.2s;
 }
+.project-link:hover { background: var(--accent-lt); }
 
+#publications { background: var(--bg-alt); }
+.pub-list { list-style: none; }
+.pub-item { display: grid; grid-template-columns: 2.5rem 1fr; gap: 1rem; padding: 1.5rem 0; border-bottom: 1px solid var(--rule); }
+.pub-item:first-child { border-top: 1px solid var(--rule); }
+.pub-num { font-family: var(--font-display); font-size: 1.2rem; color: var(--accent); font-weight: 300; padding-top: 0.1rem; }
+.pub-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 400; line-height: 1.4; color: var(--ink); margin-bottom: 0.4rem; }
+.pub-meta { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.05em; }
 .pub-journal { color: var(--accent); margin-right: 0.4rem; }
 
-/* ── CERTIFICATIONS ── */
 #certifications { background: var(--bg); }
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+.cert-card { padding: 1.5rem; border: 1px solid var(--rule); background: var(--bg); transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; }
+.cert-card:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(29,78,216,0.07); transform: translateY(-2px); }
+.cert-icon { font-size: 1.2rem; color: var(--accent); margin-bottom: 0.8rem; }
+.cert-name { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.35rem; line-height: 1.4; }
+.cert-issuer { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
 
-.cert-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1rem;
-}
-
-.cert-card {
-  padding: 1.5rem;
-  border: 1px solid var(--rule);
-  background: var(--bg);
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-}
-
-.cert-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 4px 16px rgba(29,78,216,0.07);
-  transform: translateY(-2px);
-}
-
-.cert-icon {
-  font-size: 1.2rem;
-  color: var(--accent);
-  margin-bottom: 0.8rem;
-}
-
-.cert-name {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 0.35rem;
-  line-height: 1.4;
-}
-
-.cert-issuer {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-/* ── CONTACT ── */
-#contact {
-  text-align: center;
-  padding: 7rem 4vw;
-  background: var(--bg-alt);
-}
-
-.contact-email {
-  font-family: var(--font-display);
-  font-size: clamp(1.4rem, 4vw, 2.8rem);
-  font-weight: 300;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 0.2rem;
-  transition: color 0.2s;
-  display: inline-block;
-  margin: 2rem 0;
-}
-
+#contact { text-align: center; padding: 7rem 4vw; background: var(--bg-alt); }
+.contact-email { font-family: var(--font-display); font-size: clamp(1.4rem, 4vw, 2.8rem); font-weight: 300; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 0.2rem; transition: color 0.2s; display: inline-block; margin: 2rem 0; }
 .contact-email:hover { color: var(--accent); }
-
-.contact-items {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
-}
-
-.contact-item {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.07em;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
+.contact-items { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.contact-item { font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.07em; display: flex; align-items: center; gap: 0.5rem; }
 .contact-item span { color: var(--accent); }
 
-/* ── FOOTER ── */
-footer {
-  padding: 1.8rem 4vw;
-  border-top: 1px solid var(--rule);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-  background: var(--bg);
-}
+footer { padding: 1.8rem 4vw; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.08em; background: var(--bg); }
 
-/* ── ANIMATIONS ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
   .stats-row { grid-template-columns: repeat(3, 1fr); }
@@ -677,7 +333,6 @@ footer {
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">H. Raza</div>
   <ul class="nav-links">
@@ -690,7 +345,6 @@ footer {
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-grid-lines"></div>
   <div class="hero-accent"></div>
@@ -709,36 +363,17 @@ footer {
 
 <div class="rule"></div>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="section-label">01 / About</div>
   <h2 class="section-title">Who I <em>Am</em></h2>
   <div class="about-grid">
     <div class="about-text">
-      <p>
-        I am a mathematician turned data scientist, currently pursuing an MSc in Mathematics
-        for Data and Resource Sciences at TU Bergakademie Freiberg, Germany. My academic
-        journey spans pure mathematics, theoretical physics and applied machine learning.
-      </p>
-      <p>
-        With hands-on experience in Python-based ML pipelines, HPC cluster computing and
-        geospatial data analysis, I bridge rigorous mathematical theory with real-world
-        data challenges. My research background in black hole thermodynamics has sharpened
-        my ability to work with complex numerical systems and communicate findings clearly.
-      </p>
+      <p>I am a mathematician turned data scientist, currently pursuing an MSc in Mathematics for Data and Resource Sciences at TU Bergakademie Freiberg, Germany. My academic journey spans pure mathematics, theoretical physics and applied machine learning.</p>
+      <p>With hands-on experience in Python-based ML pipelines, HPC cluster computing and geospatial data analysis, I bridge rigorous mathematical theory with real-world data challenges. My research background in black hole thermodynamics has sharpened my ability to work with complex numerical systems and communicate findings clearly.</p>
       <div class="stats-row">
-        <div class="stat-item">
-          <div class="stat-num">6</div>
-          <div class="stat-label">Publications</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">3+</div>
-          <div class="stat-label">Years Research</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">3</div>
-          <div class="stat-label">Degrees</div>
-        </div>
+        <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Publications</div></div>
+        <div class="stat-item"><div class="stat-num">3+</div><div class="stat-label">Years Research</div></div>
+        <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Degrees</div></div>
       </div>
     </div>
     <ul class="info-list">
@@ -754,7 +389,6 @@ footer {
 
 <div class="rule"></div>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="section-label">02 / Skills</div>
   <h2 class="section-title">Technical <em>Expertise</em></h2>
@@ -763,22 +397,16 @@ footer {
       <div class="skill-cat">Data & Analytics</div>
       <h3>Data Science</h3>
       <div class="skill-tags">
-        <span class="tag">Python</span>
-        <span class="tag">Pandas</span>
-        <span class="tag">NumPy</span>
-        <span class="tag">Scikit-learn</span>
-        <span class="tag">R</span>
-        <span class="tag">SQL</span>
+        <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
+        <span class="tag">Scikit-learn</span><span class="tag">R</span><span class="tag">SQL</span>
       </div>
     </div>
     <div class="skill-card">
       <div class="skill-cat">Machine Learning</div>
       <h3>ML & Modeling</h3>
       <div class="skill-tags">
-        <span class="tag">Supervised Learning</span>
-        <span class="tag">PyTorch</span>
-        <span class="tag">Cross-validation</span>
-        <span class="tag">Feature Engineering</span>
+        <span class="tag">Supervised Learning</span><span class="tag">PyTorch</span>
+        <span class="tag">Cross-validation</span><span class="tag">Feature Engineering</span>
         <span class="tag">Bayesian Methods</span>
       </div>
     </div>
@@ -786,21 +414,16 @@ footer {
       <div class="skill-cat">High-Performance Computing</div>
       <h3>HPC & Big Data</h3>
       <div class="skill-tags">
-        <span class="tag">HPC Clusters</span>
-        <span class="tag">PBS/Torque</span>
-        <span class="tag">Parallel Computing</span>
-        <span class="tag">Large-scale Datasets</span>
+        <span class="tag">HPC Clusters</span><span class="tag">PBS/Torque</span>
+        <span class="tag">Parallel Computing</span><span class="tag">Large-scale Datasets</span>
       </div>
     </div>
     <div class="skill-card">
       <div class="skill-cat">Scientific Computing</div>
       <h3>Scientific Tools</h3>
       <div class="skill-tags">
-        <span class="tag">MATLAB</span>
-        <span class="tag">Mathematica</span>
-        <span class="tag">LaTeX</span>
-        <span class="tag">SciPy</span>
-        <span class="tag">Numerical Simulation</span>
+        <span class="tag">MATLAB</span><span class="tag">Mathematica</span><span class="tag">LaTeX</span>
+        <span class="tag">SciPy</span><span class="tag">Numerical Simulation</span>
       </div>
     </div>
   </div>
@@ -808,50 +431,35 @@ footer {
 
 <div class="rule"></div>
 
-<!-- EDUCATION -->
 <section id="education">
   <div class="section-label">03 / Education</div>
   <h2 class="section-title">Academic <em>Background</em></h2>
   <div class="edu-timeline reveal">
-
     <div class="edu-item">
       <div class="edu-period">Mar 2025 — Present</div>
       <div class="edu-degree">MSc Mathematics for Data and Resource Sciences</div>
       <div class="edu-school">TU Bergakademie Freiberg, Freiberg, Germany</div>
       <div class="edu-courses">Machine Learning · Big Data · Parallel Computing · PDEs · Graph Theory · Statistics</div>
-      <div class="edu-meta">
-        <span class="edu-badge">In Progress</span>
-        <span class="edu-badge">Germany</span>
-      </div>
+      <div class="edu-meta"><span class="edu-badge">In Progress</span><span class="edu-badge">Germany</span></div>
     </div>
-
     <div class="edu-item">
       <div class="edu-period">Feb 2021 — Jan 2023</div>
       <div class="edu-degree">Master of Science in Mathematics</div>
       <div class="edu-school">COMSATS University Islamabad, Lahore Campus, Pakistan</div>
       <div class="edu-courses">Thesis: Some Thermal Properties of Self-Gravitating Objects, numerical simulations &amp; stability analysis</div>
-      <div class="edu-meta">
-        <span class="edu-badge">CGPA 3.54 / 4.0</span>
-        <span class="edu-badge">Pakistan</span>
-      </div>
+      <div class="edu-meta"><span class="edu-badge">CGPA 3.54 / 4.0</span><span class="edu-badge">Pakistan</span></div>
     </div>
-
     <div class="edu-item">
       <div class="edu-period">Aug 2015 — Aug 2019</div>
       <div class="edu-degree">BS in Mathematics</div>
       <div class="edu-school">University of Gujrat, Pakistan</div>
-      <div class="edu-meta">
-        <span class="edu-badge">CGPA 3.31 / 4.0</span>
-        <span class="edu-badge">Pakistan</span>
-      </div>
+      <div class="edu-meta"><span class="edu-badge">CGPA 3.31 / 4.0</span><span class="edu-badge">Pakistan</span></div>
     </div>
-
   </div>
 </section>
 
 <div class="rule"></div>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="section-label">04 / Projects</div>
   <h2 class="section-title">Featured <em>Work</em></h2>
@@ -868,11 +476,8 @@ footer {
         <li>Documented the full pipeline, assumptions and evaluation methodology for team transparency and reproducibility</li>
       </ul>
       <div class="skill-tags" style="margin-top:1.2rem">
-        <span class="tag">Python</span>
-        <span class="tag">Scikit-learn</span>
-        <span class="tag">HPC</span>
-        <span class="tag">Geospatial ML</span>
-        <span class="tag">Point Cloud</span>
+        <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">HPC</span>
+        <span class="tag">Geospatial ML</span><span class="tag">Point Cloud</span>
       </div>
     </div>
 
@@ -887,12 +492,30 @@ footer {
         <li>Built comprehensive evaluation framework generating sample grids, latent space interpolations, confusion matrices and quantitative metrics</li>
       </ul>
       <div class="skill-tags" style="margin-top:1.2rem">
-        <span class="tag">Python</span>
-        <span class="tag">PyTorch</span>
-        <span class="tag">Deep Learning</span>
-        <span class="tag">GANs</span>
-        <span class="tag">GPU Computing</span>
+        <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">Deep Learning</span>
+        <span class="tag">GANs</span><span class="tag">GPU Computing</span>
       </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div class="project-title">Bayesian Inference for Material Strength Prediction</div>
+      <div class="project-org">Research Project · Probabilistic Modeling & Uncertainty Quantification</div>
+      <ul class="project-points">
+        <li>Built a full Bayesian linear regression model for tensile strength prediction in multi-phase steel alloys as a function of temperature and carbon content, with domain-justified priors from metallurgical literature and ISO 6892-1 standards</li>
+        <li>Conducted a NUTS vs. ADVI tractability study — quantitatively comparing posterior quality, runtime and KL-divergence between Hamiltonian Monte Carlo and mean-field variational inference</li>
+        <li>Implemented a hierarchical Bayesian model with partial pooling across alloy families (austenitic, ferritic, martensitic), demonstrating shrinkage and group-level uncertainty quantification</li>
+        <li>Produced posterior predictive calibration analysis with formal credible intervals (50% and 90%) and failure probability estimation: P(σ_y &lt; 400 MPa | T, C) for structural reliability applications</li>
+        <li>Assessed convergence using split-R̂ statistics and ESS diagnostics; recovered temperature coefficient ≈ −0.55 MPa/°C and carbon strengthening ≈ +250 MPa/wt% — consistent with published steel data</li>
+      </ul>
+      <div class="skill-tags" style="margin-top:1.2rem">
+        <span class="tag">PyMC 5</span><span class="tag">ArviZ</span><span class="tag">NUTS</span>
+        <span class="tag">ADVI</span><span class="tag">Hierarchical Bayes</span><span class="tag">Python</span>
+        <span class="tag">Uncertainty Quantification</span>
+      </div>
+      <a href="https://github.com/hussnain-raza-dr/bayesian-material-strength" target="_blank" class="project-link">
+        ↗ View on GitHub
+      </a>
     </div>
 
   </div>
@@ -900,12 +523,10 @@ footer {
 
 <div class="rule"></div>
 
-<!-- PUBLICATIONS -->
 <section id="publications">
   <div class="section-label">05 / Publications</div>
   <h2 class="section-title">Peer-Reviewed <em>Research</em></h2>
   <ul class="pub-list reveal">
-
     <li class="pub-item">
       <div class="pub-num">06</div>
       <div>
@@ -913,7 +534,6 @@ footer {
         <div class="pub-meta"><span class="pub-journal">Physics of the Dark Universe</span> 48 (2025) · Ahissou et al. (incl. H. Raza)</div>
       </div>
     </li>
-
     <li class="pub-item">
       <div class="pub-num">05</div>
       <div>
@@ -921,7 +541,6 @@ footer {
         <div class="pub-meta"><span class="pub-journal">Nuclear Physics B</span> 1018 (2025) · Mushtaq, H. Raza et al.</div>
       </div>
     </li>
-
     <li class="pub-item">
       <div class="pub-num">04</div>
       <div>
@@ -929,7 +548,6 @@ footer {
         <div class="pub-meta"><span class="pub-journal">Physics of the Dark Universe</span> 48 (2025) · Rani, H. Raza et al.</div>
       </div>
     </li>
-
     <li class="pub-item">
       <div class="pub-num">03</div>
       <div>
@@ -937,7 +555,6 @@ footer {
         <div class="pub-meta"><span class="pub-journal">Communications in Theoretical Physics</span> 78.3 (2025) · Shahid, H. Raza et al.</div>
       </div>
     </li>
-
     <li class="pub-item">
       <div class="pub-num">02</div>
       <div>
@@ -945,7 +562,6 @@ footer {
         <div class="pub-meta"><span class="pub-journal">European Physical Journal C</span> 84.9 (2024) · H. Raza et al.</div>
       </div>
     </li>
-
     <li class="pub-item">
       <div class="pub-num">01</div>
       <div>
@@ -953,13 +569,11 @@ footer {
         <div class="pub-meta"><span class="pub-journal">European Physical Journal C</span> 83.9 (2023) · H. Raza et al.</div>
       </div>
     </li>
-
   </ul>
 </section>
 
 <div class="rule"></div>
 
-<!-- CERTIFICATIONS -->
 <section id="certifications">
   <div class="section-label">06 / Certifications & Awards</div>
   <h2 class="section-title">Recognition &amp; <em>Learning</em></h2>
@@ -994,7 +608,6 @@ footer {
 
 <div class="rule"></div>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="section-label" style="justify-content:center">07 / Contact</div>
   <h2 class="section-title" style="text-align:center">Let's <em>Connect</em></h2>
@@ -1011,7 +624,6 @@ footer {
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <span>© 2026 Hussnain Raza</span>
   <span>TU Bergakademie Freiberg · Germany</span>
@@ -1021,10 +633,7 @@ footer {
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
     });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
