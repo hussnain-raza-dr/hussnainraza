@@ -1,643 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hussnain Raza — Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Syne:wght@400;600;700&display=swap" rel="stylesheet" />
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg:        #ffffff;
-  --bg-alt:    #f7f8fa;
-  --ink:       #0f172a;
-  --muted:     #64748b;
-  --accent:    #1d4ed8;
-  --accent-lt: #dbeafe;
-  --accent-dk: #1e3a8a;
-  --rule:      #e2e8f0;
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body:    'Syne', sans-serif;
-  --font-mono:    'DM Mono', monospace;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.7;
-  overflow-x: hidden;
-}
-
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.1rem 4vw;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--rule);
-}
-
-.nav-logo {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--accent);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 400;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
-
-.nav-links a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 12px;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  transition: color 0.2s;
-}
-
-.nav-links a:hover { color: var(--accent); }
-
-#hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 4vw 6rem;
-  position: relative;
-  overflow: hidden;
-  background: var(--bg);
-}
-
-.hero-grid-lines {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(to right, var(--rule) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--rule) 1px, transparent 1px);
-  background-size: 80px 80px;
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-.hero-accent {
-  position: absolute;
-  top: 12%;
-  right: 5%;
-  width: 360px;
-  height: 360px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(29,78,216,0.07) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.hero-tag {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  margin-bottom: 1.4rem;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.2s ease forwards;
-}
-
-h1.hero-name {
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 9vw, 8rem);
-  font-weight: 300;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: fadeUp 0.9s 0.35s ease forwards;
-}
-
-h1.hero-name em { font-style: italic; color: var(--accent); }
-
-.hero-desc {
-  max-width: 520px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.85;
-  margin-bottom: 2.5rem;
-  opacity: 0;
-  animation: fadeUp 0.9s 0.5s ease forwards;
-}
-
-.hero-cta {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeUp 0.9s 0.65s ease forwards;
-}
-
-.btn {
-  display: inline-block;
-  padding: 0.7rem 1.8rem;
-  font-family: var(--font-body);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 1px solid;
-  transition: all 0.22s;
-  cursor: pointer;
-}
-
-.btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
-.btn-primary:hover { background: var(--accent-dk); border-color: var(--accent-dk); }
-.btn-ghost { background: transparent; border-color: var(--rule); color: var(--ink); }
-.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-section { padding: 6rem 4vw; position: relative; }
-
-.section-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--accent);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  margin-bottom: 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); max-width: 80px; }
-
-h2.section-title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 300;
-  line-height: 1.15;
-  color: var(--ink);
-  margin-bottom: 3rem;
-}
-
-h2.section-title em { font-style: italic; color: var(--accent); }
-
-.rule { width: 100%; height: 1px; background: var(--rule); margin: 0; }
-
-#about { background: var(--bg-alt); }
-
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-.about-text p { color: var(--muted); margin-bottom: 1rem; line-height: 1.9; font-size: 14px; }
-
-.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
-.stat-item { border-top: 2px solid var(--accent); padding-top: 1rem; }
-.stat-num { font-family: var(--font-display); font-size: 2.6rem; font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: 0.3rem; }
-.stat-label { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
-
-.info-list { list-style: none; }
-.info-list li { display: flex; justify-content: space-between; align-items: baseline; padding: 0.8rem 0; border-bottom: 1px solid var(--rule); font-size: 13px; }
-.info-list li:first-child { border-top: 1px solid var(--rule); }
-.info-key { color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; }
-.info-val { color: var(--ink); text-align: right; font-size: 13px; }
-
-#skills { background: var(--bg); }
-.skills-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
-
-.skill-card {
-  border: 1px solid var(--rule);
-  padding: 1.6rem;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-  background: var(--bg);
-}
-
-.skill-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.35s ease;
-}
-
-.skill-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(29,78,216,0.08); transform: translateY(-3px); }
-.skill-card:hover::before { transform: scaleX(1); }
-
-.skill-cat { font-family: var(--font-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.6rem; }
-.skill-card h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 0.8rem; }
-
-.skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
-.tag { font-family: var(--font-mono); font-size: 10px; padding: 0.25rem 0.65rem; border: 1px solid var(--rule); color: var(--muted); letter-spacing: 0.04em; background: var(--bg-alt); transition: border-color 0.2s, color 0.2s, background 0.2s; }
-.skill-card:hover .tag { border-color: var(--accent-lt); color: var(--accent-dk); background: var(--accent-lt); }
-
-#education { background: var(--bg-alt); }
-.edu-timeline { position: relative; padding-left: 2rem; }
-.edu-timeline::before { content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0.5rem; width: 1px; background: var(--rule); }
-
-.edu-item { position: relative; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--rule); }
-.edu-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-.edu-item::before { content: ''; position: absolute; left: -2rem; top: 0.55rem; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg-alt); box-shadow: 0 0 0 1px var(--accent); }
-
-.edu-period { font-family: var(--font-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem; }
-.edu-degree { font-family: var(--font-display); font-size: 1.55rem; font-weight: 400; color: var(--ink); margin-bottom: 0.25rem; }
-.edu-school { color: var(--muted); font-size: 13px; margin-bottom: 0.5rem; }
-.edu-meta { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.8rem; }
-.edu-badge { font-family: var(--font-mono); font-size: 10px; padding: 0.25rem 0.7rem; background: var(--accent-lt); border: 1px solid rgba(29,78,216,0.2); color: var(--accent-dk); letter-spacing: 0.05em; }
-.edu-courses { margin-top: 0.7rem; font-size: 12px; color: var(--muted); line-height: 1.8; }
-
-#projects { background: var(--bg); }
-.project-card { border: 1px solid var(--rule); padding: 2.5rem; margin-bottom: 1.5rem; transition: border-color 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; background: var(--bg); }
-.project-card:hover { border-color: var(--accent); box-shadow: 0 4px 24px rgba(29,78,216,0.07); }
-
-.project-num { font-family: var(--font-display); font-size: 6rem; font-weight: 300; color: rgba(29,78,216,0.05); position: absolute; right: 1.5rem; top: -1rem; line-height: 1; pointer-events: none; user-select: none; }
-.project-title { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; color: var(--ink); margin-bottom: 0.4rem; }
-.project-org { font-size: 11px; color: var(--accent); margin-bottom: 1.2rem; font-family: var(--font-mono); letter-spacing: 0.07em; text-transform: uppercase; }
-
-.project-points { list-style: none; }
-.project-points li { font-size: 13px; color: var(--muted); padding: 0.35rem 0; padding-left: 1.2rem; position: relative; line-height: 1.7; }
-.project-points li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 11px; }
-
-/* GitHub link badge */
-.project-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: 1.2rem;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--accent);
-  text-decoration: none;
-  letter-spacing: 0.06em;
-  border: 1px solid rgba(29,78,216,0.25);
-  padding: 0.3rem 0.75rem;
-  transition: background 0.2s, color 0.2s;
-}
-.project-link:hover { background: var(--accent-lt); }
-
-#publications { background: var(--bg-alt); }
-.pub-list { list-style: none; }
-.pub-item { display: grid; grid-template-columns: 2.5rem 1fr; gap: 1rem; padding: 1.5rem 0; border-bottom: 1px solid var(--rule); }
-.pub-item:first-child { border-top: 1px solid var(--rule); }
-.pub-num { font-family: var(--font-display); font-size: 1.2rem; color: var(--accent); font-weight: 300; padding-top: 0.1rem; }
-.pub-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 400; line-height: 1.4; color: var(--ink); margin-bottom: 0.4rem; }
-.pub-meta { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.05em; }
-.pub-journal { color: var(--accent); margin-right: 0.4rem; }
-
-#certifications { background: var(--bg); }
-.cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
-.cert-card { padding: 1.5rem; border: 1px solid var(--rule); background: var(--bg); transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; }
-.cert-card:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(29,78,216,0.07); transform: translateY(-2px); }
-.cert-icon { font-size: 1.2rem; color: var(--accent); margin-bottom: 0.8rem; }
-.cert-name { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.35rem; line-height: 1.4; }
-.cert-issuer { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
-
-#contact { text-align: center; padding: 7rem 4vw; background: var(--bg-alt); }
-.contact-email { font-family: var(--font-display); font-size: clamp(1.4rem, 4vw, 2.8rem); font-weight: 300; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 0.2rem; transition: color 0.2s; display: inline-block; margin: 2rem 0; }
-.contact-email:hover { color: var(--accent); }
-.contact-items { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem; }
-.contact-item { font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.07em; display: flex; align-items: center; gap: 0.5rem; }
-.contact-item span { color: var(--accent); }
-
-footer { padding: 1.8rem 4vw; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.08em; background: var(--bg); }
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-@media (max-width: 768px) {
-  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .stats-row { grid-template-columns: repeat(3, 1fr); }
-  .nav-links { display: none; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hussnain Raza | Academic Portfolio</title>
+    <style>
+        /* Typography-first academic styling */
+        body {
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.6;
+            color: #222;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color: #ffffff;
+        }
+        header {
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.4em;
+            margin-bottom: 5px;
+            font-weight: normal;
+        }
+        .contact-info {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        a {
+            color: #0000ee;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* Plain, functional navigation */
+        nav {
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+            padding: 10px 0;
+            margin-bottom: 40px;
+        }
+        nav a {
+            color: #000;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+        /* Section styling */
+        h2 {
+            font-size: 1.6em;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            font-size: 1.2em;
+            margin-bottom: 2px;
+            margin-top: 20px;
+        }
+        p {
+            margin-top: 5px;
+        }
+        ul {
+            margin-top: 5px;      
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .date {
+            float: right;
+            font-style: italic;
+            color: #555;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        .publication-title {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">H. Raza</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+    <header>
+        <h1>Hussnain Raza</h1>
+        <div class="contact-info">
+            Mathematician · Data Scientist · Researcher<br>
+            Freiberg, Germany | Phone: +49 155 1078 8528<br>
+            Email: <a href="mailto:malikhussnain1177@gmail.com">malikhussnain1177@gmail.com</a> | 
+            GitHub: <a href="https://github.com/hussnain-raza-dr">hussnain-raza-dr</a>
+        </div>
+    </header>
 
-<section id="hero">
-  <div class="hero-grid-lines"></div>
-  <div class="hero-accent"></div>
-  <div class="hero-tag">Mathematician · Data Scientist · Researcher</div>
-  <h1 class="hero-name">Hussnain<br><em>Raza</em></h1>
-  <p class="hero-desc">
-    MSc candidate in Mathematics for Data &amp; Resource Sciences at TU Bergakademie Freiberg, Germany.
-    Specializing in probabilistic modeling, machine learning pipelines and high-performance computing
-    with six peer-reviewed publications in theoretical physics.
-  </p>
-  <div class="hero-cta">
-    <a href="#projects" class="btn btn-primary">View Projects</a>
-    <a href="mailto:malikhussnain1177@gmail.com" class="btn btn-ghost">Get in Touch</a>
-  </div>
-</section>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-<div class="rule"></div>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I am a mathematician turned data scientist, currently pursuing an MSc in Mathematics for Data and Resource Sciences at TU Bergakademie Freiberg, Germany. My academic journey spans pure mathematics, theoretical physics and applied machine learning.</p>
+        <p>With hands-on experience in Python-based ML pipelines, HPC cluster computing and geospatial data analysis, I bridge rigorous mathematical theory with real-world data challenges. My research background in black hole thermodynamics has sharpened my ability to work with complex numerical systems and communicate findings clearly.</p>
+    </section>
 
-<section id="about">
-  <div class="section-label">01 / About</div>
-  <h2 class="section-title">Who I <em>Am</em></h2>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>I am a mathematician turned data scientist, currently pursuing an MSc in Mathematics for Data and Resource Sciences at TU Bergakademie Freiberg, Germany. My academic journey spans pure mathematics, theoretical physics and applied machine learning.</p>
-      <p>With hands-on experience in Python-based ML pipelines, HPC cluster computing and geospatial data analysis, I bridge rigorous mathematical theory with real-world data challenges. My research background in black hole thermodynamics has sharpened my ability to work with complex numerical systems and communicate findings clearly.</p>
-      <div class="stats-row">
-        <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Publications</div></div>
-        <div class="stat-item"><div class="stat-num">3+</div><div class="stat-label">Years Research</div></div>
-        <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Degrees</div></div>
-      </div>
-    </div>
-    <ul class="info-list">
-      <li><span class="info-key">Location</span><span class="info-val">Freiberg, Germany</span></li>
-      <li><span class="info-key">Email</span><span class="info-val">malikhussnain1177@gmail.com</span></li>
-      <li><span class="info-key">Phone</span><span class="info-val">+49 155 1078 8528</span></li>
-      <li><span class="info-key">Current Program</span><span class="info-val">MSc Mathematics for Data</span></li>
-      <li><span class="info-key">Languages</span><span class="info-val">English · Urdu · German (learning)</span></li>
-      <li><span class="info-key">Availability</span><span class="info-val">Open to Internships</span></li>
-    </ul>
-  </div>
-</section>
+    <section id="skills">
+        <h2>Technical Expertise</h2>
+        <ul>
+            <li><strong>Data Science & Analytics:</strong> Python, Pandas, NumPy, Scikit-learn, R, SQL</li>
+            <li><strong>Machine Learning & Modeling:</strong> Supervised Learning, PyTorch, Cross-validation, Feature Engineering, Bayesian Methods</li>
+            <li><strong>High-Performance Computing:</strong> HPC Clusters, PBS/Torque, Parallel Computing, Large-scale Datasets</li>
+            <li><strong>Scientific Computing:</strong> MATLAB, Mathematica, LaTeX, SciPy, Numerical Simulation</li>
+        </ul>
+    </section>
 
-<div class="rule"></div>
+    <section id="education">
+        <h2>Academic Background</h2>
+        <div class="clearfix">
+            <h3>TU Bergakademie Freiberg <span class="date">Mar 2025 — Present</span></h3>
+        </div>
+        <p><em>MSc Mathematics for Data and Resource Sciences</em> | Freiberg, Germany</p>
+        <ul>
+            <li><strong>Coursework:</strong> Machine Learning, Big Data, Parallel Computing, PDEs, Graph Theory, Statistics</li>
+        </ul>
 
-<section id="skills">
-  <div class="section-label">02 / Skills</div>
-  <h2 class="section-title">Technical <em>Expertise</em></h2>
-  <div class="skills-wrapper reveal">
-    <div class="skill-card">
-      <div class="skill-cat">Data & Analytics</div>
-      <h3>Data Science</h3>
-      <div class="skill-tags">
-        <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
-        <span class="tag">Scikit-learn</span><span class="tag">R</span><span class="tag">SQL</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-cat">Machine Learning</div>
-      <h3>ML & Modeling</h3>
-      <div class="skill-tags">
-        <span class="tag">Supervised Learning</span><span class="tag">PyTorch</span>
-        <span class="tag">Cross-validation</span><span class="tag">Feature Engineering</span>
-        <span class="tag">Bayesian Methods</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-cat">High-Performance Computing</div>
-      <h3>HPC & Big Data</h3>
-      <div class="skill-tags">
-        <span class="tag">HPC Clusters</span><span class="tag">PBS/Torque</span>
-        <span class="tag">Parallel Computing</span><span class="tag">Large-scale Datasets</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-cat">Scientific Computing</div>
-      <h3>Scientific Tools</h3>
-      <div class="skill-tags">
-        <span class="tag">MATLAB</span><span class="tag">Mathematica</span><span class="tag">LaTeX</span>
-        <span class="tag">SciPy</span><span class="tag">Numerical Simulation</span>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="clearfix">
+            <h3>COMSATS University Islamabad <span class="date">Feb 2021 — Jan 2023</span></h3>
+        </div>
+        <p><em>Master of Science in Mathematics</em> | Lahore Campus, Pakistan</p>
+        <ul>
+            <li><strong>Thesis:</strong> Some Thermal Properties of Self-Gravitating Objects (numerical simulations & stability analysis)</li>
+            <li><strong>CGPA:</strong> 3.54 / 4.0</li>
+        </ul>
 
-<div class="rule"></div>
+        <div class="clearfix">
+            <h3>University of Gujrat <span class="date">Aug 2015 — Aug 2019</span></h3>
+        </div>
+        <p><em>BS in Mathematics</em> | Pakistan</p>
+        <ul>
+            <li><strong>CGPA:</strong> 3.31 / 4.0</li>
+        </ul>
+    </section>
 
-<section id="education">
-  <div class="section-label">03 / Education</div>
-  <h2 class="section-title">Academic <em>Background</em></h2>
-  <div class="edu-timeline reveal">
-    <div class="edu-item">
-      <div class="edu-period">Mar 2025 — Present</div>
-      <div class="edu-degree">MSc Mathematics for Data and Resource Sciences</div>
-      <div class="edu-school">TU Bergakademie Freiberg, Freiberg, Germany</div>
-      <div class="edu-courses">Machine Learning · Big Data · Parallel Computing · PDEs · Graph Theory · Statistics</div>
-      <div class="edu-meta"><span class="edu-badge">In Progress</span><span class="edu-badge">Germany</span></div>
-    </div>
-    <div class="edu-item">
-      <div class="edu-period">Feb 2021 — Jan 2023</div>
-      <div class="edu-degree">Master of Science in Mathematics</div>
-      <div class="edu-school">COMSATS University Islamabad, Lahore Campus, Pakistan</div>
-      <div class="edu-courses">Thesis: Some Thermal Properties of Self-Gravitating Objects, numerical simulations &amp; stability analysis</div>
-      <div class="edu-meta"><span class="edu-badge">CGPA 3.54 / 4.0</span><span class="edu-badge">Pakistan</span></div>
-    </div>
-    <div class="edu-item">
-      <div class="edu-period">Aug 2015 — Aug 2019</div>
-      <div class="edu-degree">BS in Mathematics</div>
-      <div class="edu-school">University of Gujrat, Pakistan</div>
-      <div class="edu-meta"><span class="edu-badge">CGPA 3.31 / 4.0</span><span class="edu-badge">Pakistan</span></div>
-    </div>
-  </div>
-</section>
+    <section id="projects">
+        <h2>Featured Work</h2>
+        
+        <div class="clearfix">
+            <h3>Bayesian Inference for Material Strength Prediction</h3>
+        </div>
+        <p><em>Research Project · Probabilistic Modeling & Uncertainty Quantification</em> [<a href="https://github.com/hussnain-raza-dr/bayesian-material-strength">GitHub</a>]</p>
+        <ul>
+            <li>Built a full Bayesian linear regression model for tensile strength prediction in multi-phase steel alloys as a function of temperature and carbon content, with domain-justified priors from metallurgical literature and ISO 6892-1 standards.</li>
+            <li>Conducted a NUTS vs. ADVI tractability study  quantitatively comparing posterior quality, runtime and KL-divergence between Hamiltonian Monte Carlo and mean-field variational inference.</li>
+            <li>Implemented a hierarchical Bayesian model with partial pooling across alloy families (austenitic, ferritic, martensitic), demonstrating shrinkage and group-level uncertainty quantification.</li>
+            <li>Produced posterior predictive calibration analysis with formal credible intervals (50% and 90%) and failure probability estimation for structural reliability applications.</li>
+            <li><strong>Technologies:</strong> PyMC 5, ArviZ, NUTS, ADVI, Hierarchical Bayes, Python.</li>
+        </ul>
 
-<div class="rule"></div>
+        <div class="clearfix">
+            <h3>Tinto Hyperspectral Point Cloud Segmentation</h3>
+        </div>
+        <p><em>TU Bergakademie Freiberg · Data Analysis & High-Performance Computing</em> [<a href="https://github.com/Lars314159/Point-Cloud-Classification">GitHub</a>]</p>
+        <ul>
+            <li>Built an end-to-end benchmarking and classification pipeline for 3D geological point cloud data (lithology identification) using Python, Scikit-learn, Pandas and NumPy.</li>
+            <li>Designed and implemented a Block-wise Exclusion Strategy to address spatial autocorrelation in geospatial data, replacing standard random cross-validation with a robust evaluation scheme.</li>
+            <li>Executed large-scale parallel computing tasks on an HPC cluster via PBS/Torque job scheduler, processing multi-GB hyperspectral datasets efficiently.</li>
+            <li><strong>Technologies:</strong> Python, Scikit-learn, HPC, Geospatial ML, Point Cloud.</li>
+        </ul>
 
-<section id="projects">
-  <div class="section-label">04 / Projects</div>
-  <h2 class="section-title">Featured <em>Work</em></h2>
-  <div class="reveal">
+        <div class="clearfix">
+            <h3>Conditional DCGAN on CIFAR-10</h3>
+        </div>
+        <p><em>Academic Project · Deep Learning & Generative Models</em> [<a href="https://github.com/DaniilOkladnikov/project-scientific-computing">GitHub</a>]</p>
+        <ul>
+            <li>Implemented a class-conditioned Generative Adversarial Network (cGAN) for controlled image generation on the CIFAR-10 dataset.</li>
+            <li>Designed and trained generator and discriminator architectures with class embedding projections using PyTorch on GPU (CUDA).</li>
+            <li>Developed configurable training pipeline via YAML config files with extensive hyperparameter tuning.</li>
+            <li>Built comprehensive evaluation framework generating sample grids, latent space interpolations, confusion matrices and quantitative metrics.</li>
+            <li><strong>Technologies:</strong> Python, PyTorch, Deep Learning, GANs, GPU Computing.</li>
+        </ul>
+    </section>
 
-    <div class="project-card">
-      <div class="project-num">01</div>
-      <div class="project-title">Tinto Hyperspectral Point Cloud Segmentation</div>
-      <div class="project-org">TU Bergakademie Freiberg · Data Analysis & High-Performance Computing</div>
-      <ul class="project-points">
-        <li>Built an end-to-end benchmarking and classification pipeline for 3D geological point cloud data (lithology identification) using Python, Scikit-learn, Pandas and NumPy</li>
-        <li>Designed and implemented a Block-wise Exclusion Strategy to address spatial autocorrelation in geospatial data, replacing standard random cross-validation with a robust evaluation scheme</li>
-        <li>Executed large-scale parallel computing tasks on an HPC cluster via PBS/Torque job scheduler, processing multi-GB hyperspectral datasets efficiently</li>
-        <li>Documented the full pipeline, assumptions and evaluation methodology for team transparency and reproducibility</li>
-      </ul>
-      <div class="skill-tags" style="margin-top:1.2rem">
-        <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">HPC</span>
-        <span class="tag">Geospatial ML</span><span class="tag">Point Cloud</span>
-      </div>
-    </div>
+    <section id="publications">
+        <h2>Peer-Reviewed Research (6)</h2>
+        <ol reversed>
+            <li>
+                <span class="publication-title">Thermodynamics of f(T, T̄) gravity corrected black holes</span><br>
+                Authors: Ahissou et al. (incl. <strong>H. Raza</strong>).<br>
+                <em>Physics of the Dark Universe 48</em>, 2025. 
+            </li>
+            <li>
+                <span class="publication-title">Non-extensive entropic corrected thermal stability of black holes</span><br>
+                Authors: Mushtaq, <strong>H. Raza</strong>, et al.<br>
+                <em>Nuclear Physics B 1018</em>, 2025.
+            </li>
+            <li>
+                <span class="publication-title">Probing thermodynamics of Einstein-Maxwell scalar black hole</span><br>
+                Authors: Rani, <strong>H. Raza</strong>, et al.<br>
+                <em>Physics of the Dark Universe 48</em>, 2025.
+            </li>
+            <li>
+                <span class="publication-title">Versatile Thermodynamics Study of F(R) Gravity</span><br>
+                Authors: Shahid, <strong>H. Raza</strong>, et al.<br>
+                <em>Communications in Theoretical Physics 78.3</em>, 2025.
+            </li>
+            <li>
+                <span class="publication-title">Thermodynamic properties of Bardeen black hole</span><br>
+                Authors: <strong>H. Raza</strong>, et al.<br>
+                <em>European Physical Journal C 84.9</em>, 2024.
+            </li>
+            <li>
+                <span class="publication-title">Physical viability of exponential entropy on charged AdS black hole</span><br>
+                Authors: <strong>H. Raza</strong>, et al.<br>
+                <em>European Physical Journal C 83.9</em>, 2023.
+            </li>
+        </ol>
+    </section>
 
-    <div class="project-card">
-      <div class="project-num">02</div>
-      <div class="project-title">Conditional DCGAN on CIFAR-10</div>
-      <div class="project-org">Academic Project · Deep Learning & Generative Models</div>
-      <ul class="project-points">
-        <li>Implemented a class-conditioned Generative Adversarial Network (cGAN) for controlled image generation on the CIFAR-10 dataset</li>
-        <li>Designed and trained generator and discriminator architectures with class embedding projections using PyTorch on GPU (CUDA)</li>
-        <li>Developed configurable training pipeline via YAML config files with extensive hyperparameter tuning (learning rates, weight decay, label smoothing, data augmentation)</li>
-        <li>Built comprehensive evaluation framework generating sample grids, latent space interpolations, confusion matrices and quantitative metrics</li>
-      </ul>
-      <div class="skill-tags" style="margin-top:1.2rem">
-        <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">Deep Learning</span>
-        <span class="tag">GANs</span><span class="tag">GPU Computing</span>
-      </div>
-    </div>
+    <section id="certifications">
+        <h2>Certifications & Awards</h2>
+        <ul>
+            <li><strong>Bayesian Data Analysis in Python</strong> – DataCamp</li>
+            <li><strong>Python for Data Science, AI & Development</strong> – IBM via Coursera (2024)</li>
+            <li><strong>English Communication Skills</strong> – Georgia Institute of Technology via Coursera (2024)</li>
+            <li><strong>Astro 101: Black Holes</strong> – University of Alberta via Coursera (2024)</li>
+            <li><strong>PM Solar System Award</strong> – Government of Pakistan (2014)</li>
+        </ul>
+    </section>
 
-    <div class="project-card">
-      <div class="project-num">03</div>
-      <div class="project-title">Bayesian Inference for Material Strength Prediction</div>
-      <div class="project-org">Research Project · Probabilistic Modeling & Uncertainty Quantification</div>
-      <ul class="project-points">
-        <li>Built a full Bayesian linear regression model for tensile strength prediction in multi-phase steel alloys as a function of temperature and carbon content, with domain-justified priors from metallurgical literature and ISO 6892-1 standards</li>
-        <li>Conducted a NUTS vs. ADVI tractability study — quantitatively comparing posterior quality, runtime and KL-divergence between Hamiltonian Monte Carlo and mean-field variational inference</li>
-        <li>Implemented a hierarchical Bayesian model with partial pooling across alloy families (austenitic, ferritic, martensitic), demonstrating shrinkage and group-level uncertainty quantification</li>
-        <li>Produced posterior predictive calibration analysis with formal credible intervals (50% and 90%) and failure probability estimation: P(σ_y &lt; 400 MPa | T, C) for structural reliability applications</li>
-        <li>Assessed convergence using split-R̂ statistics and ESS diagnostics; recovered temperature coefficient ≈ −0.55 MPa/°C and carbon strengthening ≈ +250 MPa/wt% — consistent with published steel data</li>
-      </ul>
-      <div class="skill-tags" style="margin-top:1.2rem">
-        <span class="tag">PyMC 5</span><span class="tag">ArviZ</span><span class="tag">NUTS</span>
-        <span class="tag">ADVI</span><span class="tag">Hierarchical Bayes</span><span class="tag">Python</span>
-        <span class="tag">Uncertainty Quantification</span>
-      </div>
-      <a href="https://github.com/hussnain-raza-dr/bayesian-material-strength" target="_blank" class="project-link">
-        ↗ View on GitHub
-      </a>
-    </div>
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>I am currently open to research collaborations, internship opportunities and interesting data science challenges.</p>
+        <p><strong>Email:</strong> <a href="mailto:malikhussnain1177@gmail.com">malikhussnain1177@gmail.com</a><br>
+        <strong>Phone:</strong> +49 155 1078 8528<br>
+        <strong>Location:</strong> Freiberg, Germany</p>
+    </section>
 
-  </div>
-</section>
-
-<div class="rule"></div>
-
-<section id="publications">
-  <div class="section-label">05 / Publications</div>
-  <h2 class="section-title">Peer-Reviewed <em>Research</em></h2>
-  <ul class="pub-list reveal">
-    <li class="pub-item">
-      <div class="pub-num">06</div>
-      <div>
-        <div class="pub-title">Thermodynamics of f(T, T̄) gravity corrected black holes</div>
-        <div class="pub-meta"><span class="pub-journal">Physics of the Dark Universe</span> 48 (2025) · Ahissou et al. (incl. H. Raza)</div>
-      </div>
-    </li>
-    <li class="pub-item">
-      <div class="pub-num">05</div>
-      <div>
-        <div class="pub-title">Non-extensive entropic corrected thermal stability of black holes</div>
-        <div class="pub-meta"><span class="pub-journal">Nuclear Physics B</span> 1018 (2025) · Mushtaq, H. Raza et al.</div>
-      </div>
-    </li>
-    <li class="pub-item">
-      <div class="pub-num">04</div>
-      <div>
-        <div class="pub-title">Probing thermodynamics of Einstein-Maxwell scalar black hole</div>
-        <div class="pub-meta"><span class="pub-journal">Physics of the Dark Universe</span> 48 (2025) · Rani, H. Raza et al.</div>
-      </div>
-    </li>
-    <li class="pub-item">
-      <div class="pub-num">03</div>
-      <div>
-        <div class="pub-title">Versatile Thermodynamics Study of F(R) Gravity</div>
-        <div class="pub-meta"><span class="pub-journal">Communications in Theoretical Physics</span> 78.3 (2025) · Shahid, H. Raza et al.</div>
-      </div>
-    </li>
-    <li class="pub-item">
-      <div class="pub-num">02</div>
-      <div>
-        <div class="pub-title">Thermodynamic properties of Bardeen black hole</div>
-        <div class="pub-meta"><span class="pub-journal">European Physical Journal C</span> 84.9 (2024) · H. Raza et al.</div>
-      </div>
-    </li>
-    <li class="pub-item">
-      <div class="pub-num">01</div>
-      <div>
-        <div class="pub-title">Physical viability of exponential entropy on charged AdS black hole</div>
-        <div class="pub-meta"><span class="pub-journal">European Physical Journal C</span> 83.9 (2023) · H. Raza et al.</div>
-      </div>
-    </li>
-  </ul>
-</section>
-
-<div class="rule"></div>
-
-<section id="certifications">
-  <div class="section-label">06 / Certifications & Awards</div>
-  <h2 class="section-title">Recognition &amp; <em>Learning</em></h2>
-  <div class="cert-grid reveal">
-    <div class="cert-card">
-      <div class="cert-icon">◈</div>
-      <div class="cert-name">Bayesian Data Analysis in Python</div>
-      <div class="cert-issuer">DataCamp</div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-icon">◈</div>
-      <div class="cert-name">Python for Data Science, AI & Development</div>
-      <div class="cert-issuer">IBM via Coursera · 2024</div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-icon">◈</div>
-      <div class="cert-name">English Communication Skills</div>
-      <div class="cert-issuer">Georgia Institute of Technology via Coursera · 2024</div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-icon">◈</div>
-      <div class="cert-name">Astro 101: Black Holes</div>
-      <div class="cert-issuer">University of Alberta via Coursera · 2024</div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-icon">★</div>
-      <div class="cert-name">PM Solar System Award</div>
-      <div class="cert-issuer">Government of Pakistan · 2014</div>
-    </div>
-  </div>
-</section>
-
-<div class="rule"></div>
-
-<section id="contact">
-  <div class="section-label" style="justify-content:center">07 / Contact</div>
-  <h2 class="section-title" style="text-align:center">Let's <em>Connect</em></h2>
-  <p style="color:var(--muted); max-width:400px; margin:0 auto; text-align:center; font-size:13px;">
-    Open to research collaborations, internship opportunities and interesting data science challenges.
-  </p>
-  <div style="text-align:center">
-    <a href="mailto:malikhussnain1177@gmail.com" class="contact-email">Email me</a>
-  </div>
-  <div class="contact-items">
-    <div class="contact-item"><span>✦</span> Freiberg, Germany</div>
-    <div class="contact-item"><span>✦</span> +49 155 1078 8528</div>
-    <div class="contact-item"><span>✦</span> Open to Internships</div>
-  </div>
-</section>
-
-<footer>
-  <span>© 2026 Hussnain Raza</span>
-  <span>TU Bergakademie Freiberg · Germany</span>
-</footer>
-
-<script>
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-</script>
+    <br><br>
+    <hr>
+    <p style="text-align: center; font-size: 0.9em; color: #666;">Last updated: 2026</p>
 
 </body>
 </html>
